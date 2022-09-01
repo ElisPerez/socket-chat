@@ -51,51 +51,6 @@
     <!-- New Sign Out: Not used -->
     <!-- <button id="sign_out_button" class="g_id_signout">Sign Out</button> -->
 
-    <script>
-      // HTML
-      var url = window.location.hostname.includes('localhost')
-        ? 'http://localhost:8080/api/auth/google'
-        : 'https://web-rest-server-nodejs.herokuapp.com/api/auth/google';
-
-      function decodeJwtResponse(token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-      }
-
-      function handleCredentialResponse(response) {
-        const id_token = response.credential;
-
-        const responsePayload = decodeJwtResponse(id_token);
-        // console.log(responsePayload);
-
-        console.log('ID: ' + responsePayload.sub);
-        console.log('Full Name: ' + responsePayload.name);
-        console.log('Given Name: ' + responsePayload.given_name);
-        console.log('Family Name: ' + responsePayload.family_name);
-        console.log('Image URL: ' + responsePayload.picture);
-        console.log('Email: ' + responsePayload.email);
-
-        const data = { id_token };
-
-        fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then(res => res.json())
-          .then(data => console.log('Our server Elis:', { id_token }))
-          .catch(console.log);
-      }
-
-      // Sign out the user
-      // const button = document.getElementById('sign_out_button');
-      // button.onclick = () => {
-      //   google.accounts.id.disableAutoSelect();
-      //   console.log(`Elis click in Sign Out`);
-      // };
-    </script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>
