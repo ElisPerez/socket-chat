@@ -5,11 +5,12 @@ var url = window.location.hostname.includes('localhost')
   ? 'http://localhost:8080/api/auth/google'
   : 'https://web-rest-server-nodejs.herokuapp.com/api/auth/google';
 
-function decodeJwtResponse(token) {
-  var base64Url = token.split('.')[1];
-  var base64 = base64Url.replace('-', '+').replace('_', '/');
-  return JSON.parse(window.atob(base64));
-}
+// this function is the same "parseJwt(token)" that is in /function/parse-jwt.js
+// function decodeJwtResponse(token) {
+//   var base64Url = token.split('.')[1];
+//   var base64 = base64Url.replace('-', '+').replace('_', '/');
+//   return JSON.parse(window.atob(base64));
+// }
 
 // This is the function that calls the google button in the html.
 function handleCredentialResponse(response) {
@@ -17,15 +18,15 @@ function handleCredentialResponse(response) {
   const { credential: token_google } = response;
 
   // User data from Google
-  const userData = decodeJwtResponse(token_google);
+  // const userData = decodeJwtResponse(token_google);
   // console.log(userData);
 
-  console.log('ID: ' + userData.sub);
-  console.log('Full Name: ' + userData.name);
-  console.log('Given Name: ' + userData.given_name);
-  console.log('Family Name: ' + userData.family_name);
-  console.log('Image URL: ' + userData.picture);
-  console.log('Email: ' + userData.email);
+  // console.log('ID: ' + userData.sub);
+  // console.log('Full Name: ' + userData.name);
+  // console.log('Given Name: ' + userData.given_name);
+  // console.log('Family Name: ' + userData.family_name);
+  // console.log('Image URL: ' + userData.picture);
+  // console.log('Email: ' + userData.email);
 
   // id_token is necessary to pass it as an argument in the body of the fetch
   const id_token = { id_token: token_google };
