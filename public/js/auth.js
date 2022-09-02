@@ -23,14 +23,15 @@ myForm.addEventListener('submit', e => {
     headers: {
       'Content-Type': 'application/json',
     },
-body: JSON.stringify(formData), // The body arguments are email and password but they are already serialized in formData
+    body: JSON.stringify(formData), // The body arguments are email and password but they are already serialized in formData
   })
     .then(res => res.json())
-    .then(({msg, token}) => {
+    .then(({ msg, token }) => {
       if (msg) {
         return console.error(msg);
       }
-      localStorage.setItem('token', token)
+      localStorage.setItem('token', token);
+      window.location = 'chat.html';
     })
     .catch(console.log);
 });
@@ -58,6 +59,7 @@ function googleSignIn(response) {
       // console.log('data fetch response:', data);
       // console.log('Token from my backend:', { token }); // {token: "eazAEa..."}
       localStorage.setItem('token', token);
+      window.location = 'chat.html';
     })
     .catch(console.log);
 }
