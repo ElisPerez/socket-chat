@@ -1,7 +1,7 @@
 const myForm = document.querySelector('form');
 
 // Verify what the host name is to assign it in the var url ternary.
-console.log('hostname:', window.location.hostname);
+console.log('Delete this when you upload it to Vercel. Hostname:', window.location.hostname);
 // HTML
 const url = window.location.hostname.includes('localhost')
   ? 'http://localhost:8080/api/auth/'
