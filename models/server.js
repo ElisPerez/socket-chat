@@ -32,7 +32,7 @@ class Server {
     this.routes();
 
     // Sockets Events method.
-    this.sockets()
+    this.sockets();
   }
 
   async connectDB() {
@@ -70,7 +70,7 @@ class Server {
   }
 
   sockets() {
-    this.io.on('connection', socketController)
+    this.io.on('connection', socket => socketController(socket, this.io));
   }
 
   listen() {

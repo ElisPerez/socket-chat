@@ -35,7 +35,7 @@ const checkJWT = async (token = '') => {
 
     if (user) {
       if (user.state) {
-        return user;
+        return user.toJSON();
       } else {
         return null;
       }
